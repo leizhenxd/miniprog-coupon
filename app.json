@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/optimus/optimus",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "navigationBarTitleText": "自助优惠券领取",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#000",
+    "selectedColor": "#ff0000",
+    "backgroundColor": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/pages/images/home_black.png",
+        "selectedIconPath": "/pages/images/home_red.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/optimus/optimus",
+        "iconPath": "/pages/images/cart_black.png",
+        "selectedIconPath": "/pages/images/cart_red.png",
+        "text": "精选"
+      }
+    ]
+  },
+  "style": "v2",
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

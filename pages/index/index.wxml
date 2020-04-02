@@ -1,0 +1,64 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="tip">复制商品链接查询优惠券</view>
+  <view class="page__bd">
+    <mp-searchbar bindblur="getCouponInfo" value="{{queryData}}" search="{{search}}" bindfocus="focusSearch" placeholder="复制商品信息"></mp-searchbar>
+  </view>
+  <view wx:if="{{haveResultTip}}" class="tip">没有查询到商品或者此商品无优惠券</view>
+  <view class="recommend-container"  wx:if="{{haveResult && !coupon.showRecommend}}">
+    <view>{{coupon.tbPwd}}</view>
+    <button type="primary" bindtap="copyPwd" data-url="{{coupon.tbPwd}}">复制</button>
+  </view>
+  <view class="item-container" wx:if="{{haveResult  && coupon.showRecommend}}">
+    <view class="shop-title">{{coupon.shopTitle}}</view>
+    <image src="{{coupon.picUrl}}" mode="widthFix"></image>
+    <view class="title">{{coupon.title}}</view>
+    <view class="item-desc">
+      <view class="price-info">
+        <view class="price-icon" wx:if="{{coupon.couponAmount != null}}">券后价</view>
+        <view class="cur-price" wx:if="{{coupon.couponAmount != null}}">￥{{coupon.reservePrice-coupon.couponAmount}}</view>
+        <view class="now-price">现价￥{{coupon.reservePrice}}</view>
+        <view class="volume">{{coupon.volume}}笔成交</view>
+      </view>
+      <view class="yhq-info" wx:if="{{coupon.couponAmount != null}}">
+        <view wx:if="{{coupon.couponAmount != null}}">￥{{coupon.couponAmount}}</view>
+        <view bindtap="copyPwd" data-url="{{coupon.tbPwd}}">立即领取</view>
+      </view>
+      <view class="non-yhq-info" wx:if="{{coupon.couponAmount == null}}">
+        <view bindtap="copyPwd" data-url="{{coupon.tbPwd}}">无优惠券,立即去购买</view>
+      </view>
+    </view>
+  </view>
+  
+  <!--相似商品推荐-->
+  <view class="recommend-container"  wx:if="{{haveResult && coupon.showRecommend}}">
+    <view>更多推荐</view>
+    <view class="line"></view>
+    <view class="reco-list">
+      <view class="item-container" wx:for="{{coupon.recommends}}">
+        <view class="shop-title">{{item.shopTitle}}</view>
+        <image src="{{item.picUrl}}" mode="widthFix"></image>
+        <view class="title">{{item.title}}</view>
+        <view class="item-desc">
+          <view class="price-info">
+            <view class="now-price">现价￥{{item.reservePrice}}</view>
+            <view class="volume">{{item.volume}}笔成交</view>
+          </view>
+          <view class="price-info">
+            <view class="price-icon" wx:if="{{item.couponAmount != null}}">券后价</view>
+            <view class="cur-price" wx:if="{{item.couponAmount != null}}">￥{{item.couponPrice}}</view>
+          </view>
+          <view class="yhq-info" wx:if="{{item.couponAmount != null}}">
+            <view wx:if="{{item.couponAmount != null}}">￥{{item.couponAmount}}</view>
+            <view bindtap="copyPwd" data-url="{{item.tbPwd}}">立即领取</view>
+          </view>
+          <view class="non-yhq-info" wx:if="{{item.couponAmount == null}}">
+            <view bindtap="copyPwd" data-url="{{item.tbPwd}}">无优惠券,立即去购买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view bindtap="copyAuthor" class="foot"><official-account></official-account></view>

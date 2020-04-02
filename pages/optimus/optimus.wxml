@@ -1,0 +1,30 @@
+<view class="recommend-container">
+    <view>爆款推荐</view>
+    <view class="line"></view>
+    <view class="reco-list">
+      <view class="item-container" wx:for="{{items}}">
+        <view class="shop-title">{{item.shopTitle}}</view>
+        <image lazy-load="true" src="{{item.picUrl}}" mode="widthFix"></image>
+        <view class="title">{{item.title}}</view>
+        <view class="item-desc">
+          <view class="price-info">
+            <view class="now-price">现价￥{{item.reservePrice}}</view>
+            <view class="volume">{{item.volume}}笔成交</view>
+          </view>
+          <view class="price-info">
+            <view class="price-icon" wx:if="{{item.couponAmount != null}}">券后价</view>
+            <view class="cur-price" wx:if="{{item.couponAmount != null}}">￥{{item.couponPrice}}</view>
+          </view>
+          <view class="yhq-info" wx:if="{{item.couponAmount != null}}">
+            <view wx:if="{{item.couponAmount != null}}">￥{{item.couponAmount}}</view>
+            <view bindtap="copyPwd" data-item="{{item}}">领取</view>
+          </view>
+          <view class="non-yhq-info" wx:if="{{item.couponAmount == null}}">
+            <view bindtap="copyPwd" data-item="{{item}}">无优惠券,立即去购买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot">@Author-WX: leizhenxd</view>

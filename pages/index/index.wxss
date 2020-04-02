@@ -1,0 +1,7 @@
+/**index.wxss**/
+.tip {
+  color: #aaa;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+}
